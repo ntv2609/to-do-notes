@@ -1,0 +1,123 @@
+# PROJECT_TREE
+# [+] = nội dung được kèm bên dưới (sau dòng '# File: ...')
+# [ ] = chỉ có tên file, CHƯA gửi nội dung (cần thì hỏi tôi)
+[ ] .gitignore
+[ ] AGENTS.md
+[ ] app/.gitignore
+[ ] app/build.gradle.kts
+[ ] app/src/androidTest/java/com/vinhnt/todonotes/ExampleInstrumentedTest.java
+[+] app/src/main/AndroidManifest.xml
+[ ] app/src/main/java/com/vinhnt/todonotes/data/model/Priority.java
+[ ] app/src/main/java/com/vinhnt/todonotes/data/model/SubtaskItem.java
+[ ] app/src/main/java/com/vinhnt/todonotes/data/model/TaskCategory.java
+[ ] app/src/main/java/com/vinhnt/todonotes/MainActivity.java
+[ ] app/src/main/java/com/vinhnt/todonotes/util/AppExecutors.java
+[ ] app/src/main/java/com/vinhnt/todonotes/util/DateTimeUtils.java
+[ ] app/src/main/java/com/vinhnt/todonotes/util/SubtaskJsonHelper.java
+[ ] app/src/main/java/com/vinhnt/todonotes/util/ValidationUtils.java
+[ ] app/src/main/keepRules/rules.keep
+[ ] app/src/main/res/drawable/ic_launcher_background.xml
+[ ] app/src/main/res/drawable/ic_launcher_foreground.xml
+[ ] app/src/main/res/layout/activity_main.xml
+[ ] app/src/main/res/mipmap-anydpi/ic_launcher.xml
+[ ] app/src/main/res/mipmap-anydpi/ic_launcher_round.xml
+[ ] app/src/main/res/mipmap-hdpi/ic_launcher.webp
+[ ] app/src/main/res/mipmap-hdpi/ic_launcher_round.webp
+[ ] app/src/main/res/mipmap-mdpi/ic_launcher.webp
+[ ] app/src/main/res/mipmap-mdpi/ic_launcher_round.webp
+[ ] app/src/main/res/mipmap-xhdpi/ic_launcher.webp
+[ ] app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp
+[ ] app/src/main/res/mipmap-xxhdpi/ic_launcher.webp
+[ ] app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp
+[ ] app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp
+[ ] app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp
+[+] app/src/main/res/values-night/themes.xml
+[+] app/src/main/res/values/colors.xml
+[+] app/src/main/res/values/strings.xml
+[+] app/src/main/res/values/themes.xml
+[ ] app/src/main/res/xml/backup_rules.xml
+[ ] app/src/main/res/xml/data_extraction_rules.xml
+[ ] app/src/test/java/com/vinhnt/todonotes/ExampleUnitTest.java
+[ ] app/src/test/java/com/vinhnt/todonotes/util/ValidationAndHelperTest.java
+[ ] build.gradle.kts
+[ ] docs/DECISIONS.md
+[ ] docs/plan/00-overview.md
+[ ] docs/plan/M0.md
+[ ] docs/plan/M1.md
+[ ] docs/plan/M2.md
+[ ] docs/plan/M3.md
+[ ] docs/plan/M4.md
+[ ] docs/plan/M5.md
+[ ] docs/SPEC.md
+[ ] gradle.properties
+[ ] gradle/gradle-daemon-jvm.properties
+[ ] gradle/libs.versions.toml
+[ ] gradle/wrapper/gradle-wrapper.jar
+[ ] gradle/wrapper/gradle-wrapper.properties
+[ ] settings.gradle.kts
+# END_PROJECT_TREE
+
+# File: app/src/main/AndroidManifest.xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TodoNotes">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+
+
+# File: app/src/main/res/values-night/themes.xml
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TodoNotes" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    </style>
+</resources>
+
+
+# File: app/src/main/res/values/colors.xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
+
+
+# File: app/src/main/res/values/strings.xml
+<resources>
+    <string name="app_name">TodoNotes</string>
+</resources>
+
+
+# File: app/src/main/res/values/themes.xml
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TodoNotes" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.TodoNotes" parent="Base.Theme.TodoNotes" />
+</resources>
+
