@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.vinhnt.todonotes.data.model.Priority;
 import com.vinhnt.todonotes.data.model.SubtaskItem;
 import com.vinhnt.todonotes.data.model.TaskCategory;
@@ -18,7 +20,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
-* Bộ kiểm thử đơn vị (Local Unit Test) cho ValidationUtils, SubtaskJsonHelper, DateTimeUtils và các Enum mô hình.
+* Bộ kiểm thử đơn vị (Local Unit Test) cho ValidationUtils, SubtaskJsonHelper, DateTimeUtils, PreferencesManager và các Enum mô hình.
   */
   public class ValidationAndHelperTest {
 
@@ -129,5 +131,25 @@ import java.util.List;
   assertEquals(Priority.MEDIUM, Priority.fromValue(99));
   assertEquals(TaskCategory.STUDY, TaskCategory.fromValue(1));
   assertEquals(TaskCategory.PERSONAL, TaskCategory.fromValue(-5));
+  }
+
+  @Test
+  public void preferencesManager_resolveNightModeAndLanguageTag_worksCorrectly() {
+  assertEquals(
+  AppCompatDelegate.MODE_NIGHT_NO,
+  PreferencesManager.resolveNightModeFlag(PreferencesManager.THEME_LIGHT)
+  );
+  assertEquals(
+  AppCompatDelegate.MODE_NIGHT_YES,
+  PreferencesManager.resolveNightModeFlag(PreferencesManager.THEME_DARK)
+  );
+  assertEquals(
+  AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM,
+  PreferencesManager.resolveNightModeFlag(PreferencesManager.THEME_SYSTEM)
+  );
+
+       assertEquals("en", PreferencesManager.normalizeLanguageTag("en-US"));
+       assertEquals("vi", PreferencesManager.normalizeLanguageTag("vi-VN"));
+       assertEquals("vi", PreferencesManager.normalizeLanguageTag(null));
   }
   }

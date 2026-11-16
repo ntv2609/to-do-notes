@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_root_add_edit_note"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_add_edit_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_surface"
+        android:elevation="2dp"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:title="@string/title_add_note"
+        app:titleTextColor="@color/color_text_primary" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_note_color"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/layout_color_palette"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btn_color_0"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_badge_rounded"
+                    android:contentDescription="@string/label_note_color"
+                    app:tint="@color/note_color_0_stroke" />
+
+                <ImageButton
+                    android:id="@+id/btn_color_1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_badge_rounded"
+                    android:contentDescription="@string/label_note_color"
+                    app:tint="@color/note_color_1_stroke" />
+
+                <ImageButton
+                    android:id="@+id/btn_color_2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_badge_rounded"
+                    android:contentDescription="@string/label_note_color"
+                    app:tint="@color/note_color_2_stroke" />
+
+                <ImageButton
+                    android:id="@+id/btn_color_3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_badge_rounded"
+                    android:contentDescription="@string/label_note_color"
+                    app:tint="@color/note_color_3_stroke" />
+
+                <ImageButton
+                    android:id="@+id/btn_color_4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_badge_rounded"
+                    android:contentDescription="@string/label_note_color"
+                    app:tint="@color/note_color_4_stroke" />
+
+                <ImageButton
+                    android:id="@+id/btn_color_5"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_badge_rounded"
+                    android:contentDescription="@string/label_note_color"
+                    app:tint="@color/note_color_5_stroke" />
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_note_title"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/hint_note_title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_note_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:maxLength="200"
+                    android:maxLines="2" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_note_content"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+                android:hint="@string/hint_note_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_note_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:maxLength="20000"
+                    android:minLines="8" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_note_last_updated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/color_text_disabled"
+                android:textSize="12sp"
+                tools:text="Cập nhật: 15/11 14:30" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

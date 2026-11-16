@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Bảng màu chủ đạo Indigo Slate + Soft Glass (Dark Mode - docs/DESIGN.md) -->
+    <color name="color_primary">#818CF8</color>
+    <color name="color_on_primary">#0F172A</color>
+    <color name="color_primary_container">#1E1B4B</color>
+    <color name="color_on_primary_container">#E0E7FF</color>
+    <color name="color_secondary">#38BDF8</color>
+    <color name="color_on_secondary">#0F172A</color>
+
+    <!-- Nền màn hình, bề mặt Soft Glass và viền 1dp -->
+    <color name="color_background">#0B0F19</color>
+    <color name="color_surface">#111827</color>
+    <color name="color_surface_glass">#E01E293B</color>
+    <color name="color_surface_elevated">#1E293B</color>
+    <color name="color_glass_stroke">#334155</color>
+    <color name="color_divider">#1E293B</color>
+
+    <!-- Văn bản (Độ tương phản >= 4.5:1) -->
+    <color name="color_text_primary">#F8FAFC</color>
+    <color name="color_text_secondary">#94A3B8</color>
+    <color name="color_text_disabled">#64748B</color>
+
+    <!-- Màu Mức độ ưu tiên & Trạng thái (Dark Mode) -->
+    <color name="priority_low_text">#7DD3FC</color>
+    <color name="priority_low_bg">#0C4A6E</color>
+    <color name="priority_medium_text">#FCD34D</color>
+    <color name="priority_medium_bg">#78350F</color>
+    <color name="priority_high_text">#FDA4AF</color>
+    <color name="priority_high_bg">#881337</color>
+
+    <color name="status_overdue_text">#FCA5A5</color>
+    <color name="status_overdue_bg">#7F1D1D</color>
+    <color name="status_completed_text">#86EFAC</color>
+    <color name="status_completed_bg">#14532D</color>
+
+    <!-- 6 Màu thẻ Ghi chú nhanh (Dark Mode - Tông trầm dịu mắt) -->
+    <color name="note_color_0_bg">#1E293B</color>
+    <color name="note_color_0_stroke">#334155</color>
+    <color name="note_color_1_bg">#292112</color>
+    <color name="note_color_1_stroke">#5C481D</color>
+    <color name="note_color_2_bg">#112822</color>
+    <color name="note_color_2_stroke">#1F4E40</color>
+    <color name="note_color_3_bg">#112233</color>
+    <color name="note_color_3_stroke">#1E3F5E</color>
+    <color name="note_color_4_bg">#2D161E</color>
+    <color name="note_color_4_stroke">#592838</color>
+    <color name="note_color_5_bg">#201833</color>
+    <color name="note_color_5_stroke">#423068</color>
+</resources>

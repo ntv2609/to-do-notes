@@ -1,24 +1,20 @@
 package com.vinhnt.todonotes;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+/**
+* Lớp chuyển tiếp tương thích ngược (nếu chưa xóa thủ công file gốc do template tạo).
+* Activity chính thức của ứng dụng nằm tại {@link com.vinhnt.todonotes.ui.main.MainActivity}.
+  */
+  public class MainActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-    }
-}
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+  super.onCreate(savedInstanceState);
+  startActivity(new Intent(this, com.vinhnt.todonotes.ui.main.MainActivity.class));
+  finish();
+  }
+  }

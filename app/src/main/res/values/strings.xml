@@ -1,3 +1,159 @@
 <resources>
-    <string name="app_name">TodoNotes</string>
+    <string name="app_name" translatable="false">TodoNotes</string>
+
+    <!-- Điều hướng & Thanh công cụ -->
+    <string name="nav_tasks">Công việc</string>
+    <string name="nav_notes">Ghi chú nhanh</string>
+    <string name="action_search">Tìm kiếm</string>
+    <string name="action_sort">Sắp xếp</string>
+    <string name="action_toggle_layout">Đổi bố cục hiển thị</string>
+    <string name="action_settings">Cài đặt</string>
+    <string name="action_save">Lưu</string>
+    <string name="action_delete">Xóa</string>
+    <string name="action_cancel">Hủy</string>
+    <string name="action_undo">Hoàn tác</string>
+    <string name="action_pin">Ghim ghi chú</string>
+    <string name="action_unpin">Bỏ ghim ghi chú</string>
+    <string name="action_convert_to_task">Chuyển thành công việc</string>
+
+    <!-- Thống kê tiến độ công việc -->
+    <string name="progress_card_title">Tiến độ công việc</string>
+    <string name="progress_summary_format">%1$d/%2$d hoàn thành • %3$d quá hạn</string>
+    <string name="progress_percentage_format">%1$d%%</string>
+
+    <!-- Bộ lọc trạng thái công việc (UC 3.11) -->
+    <string name="filter_all">Tất cả</string>
+    <string name="filter_active">Chưa hoàn thành</string>
+    <string name="filter_completed">Đã hoàn thành</string>
+    <string name="filter_overdue">Quá hạn</string>
+    <string name="filter_today">Hôm nay</string>
+
+    <!-- Nhãn phân loại công việc (Category) -->
+    <string name="category_all">Tất cả nhãn</string>
+    <string name="category_personal">Cá nhân</string>
+    <string name="category_study">Học tập</string>
+    <string name="category_work">Công việc</string>
+    <string name="category_shopping">Mua sắm</string>
+    <string name="category_other">Khác</string>
+
+    <!-- Mức độ ưu tiên (Priority) -->
+    <string name="priority_label">Mức độ ưu tiên</string>
+    <string name="priority_low">Thấp</string>
+    <string name="priority_medium">Trung bình</string>
+    <string name="priority_high">Cao</string>
+
+    <!-- Sắp xếp công việc (UC 3.12) -->
+    <string name="sort_dialog_title">Sắp xếp công việc</string>
+    <string name="sort_by_created_date">Thời gian tạo (Mới nhất)</string>
+    <string name="sort_by_due_date">Thời hạn hoàn thành (Gần nhất)</string>
+    <string name="sort_by_priority">Mức độ ưu tiên (Cao đến thấp)</string>
+
+    <!-- Biểu mẫu Thêm / Sửa Công việc (UC 3.2, 3.3, 3.13, 3.14) -->
+    <string name="title_add_task">Thêm công việc mới</string>
+    <string name="title_edit_task">Chi tiết &amp; Chỉnh sửa công việc</string>
+    <string name="hint_task_title">Tiêu đề công việc *</string>
+    <string name="hint_task_description">Mô tả chi tiết công việc</string>
+    <string name="label_task_category">Nhãn phân loại</string>
+    <string name="label_due_date">Thời hạn hoàn thành</string>
+    <string name="due_date_not_set">Chưa đặt thời hạn</string>
+    <string name="action_pick_due_date">Chọn hạn chót</string>
+    <string name="action_clear_due_date">Xóa hạn</string>
+    <string name="label_reminder">Nhắc nhở thông báo</string>
+    <string name="reminder_not_set">Chưa đặt nhắc nhở</string>
+    <string name="action_pick_reminder">Đặt giờ nhắc</string>
+    <string name="action_clear_reminder">Hủy nhắc</string>
+    <string name="label_subtasks">Danh sách công việc con</string>
+    <string name="hint_add_subtask">Nhập công việc con...</string>
+    <string name="action_add_subtask">Thêm mục</string>
+    <string name="subtask_progress_format">%1$d/%2$d mục con</string>
+    <string name="badge_overdue">Quá hạn</string>
+
+    <!-- Biểu mẫu Tạo / Sửa Ghi chú nhanh (UC 3.6, 3.7, 3.8, 3.9) -->
+    <string name="title_add_note">Tạo ghi chú nhanh</string>
+    <string name="title_edit_note">Chi tiết &amp; Chỉnh sửa ghi chú</string>
+    <string name="hint_note_title">Tiêu đề ghi chú</string>
+    <string name="hint_note_content">Nội dung ghi chú nhanh...</string>
+    <string name="label_note_color">Màu thẻ ghi chú</string>
+    <string name="badge_pinned">Đã ghim</string>
+    <string name="filter_pinned_only">Chỉ xem đã ghim</string>
+    <string name="note_updated_at_format">Cập nhật: %1$s</string>
+
+    <!-- Tìm kiếm (UC 3.10) -->
+    <string name="title_search">Tìm kiếm Công việc &amp; Ghi chú</string>
+    <string name="hint_search_all">Nhập từ khóa tìm công việc hoặc ghi chú...</string>
+    <string name="hint_search_tasks">Tìm công việc trong danh sách...</string>
+    <string name="hint_search_notes">Tìm ghi chú nhanh...</string>
+    <string name="search_section_tasks">Công việc (%1$d)</string>
+    <string name="search_section_notes">Ghi chú nhanh (%1$d)</string>
+
+    <!-- Trạng thái rỗng (Empty States) -->
+    <string name="empty_tasks_title">Chưa có công việc nào</string>
+    <string name="empty_tasks_subtitle">Nhấn nút + ở góc dưới để thêm công việc hằng ngày đầu tiên của bạn.</string>
+    <string name="empty_tasks_filter_title">Không có công việc phù hợp</string>
+    <string name="empty_tasks_filter_subtitle">Thử chọn tiêu chí lọc khác hoặc xóa từ khóa tìm kiếm.</string>
+    <string name="empty_notes_title">Chưa có ghi chú nhanh nào</string>
+    <string name="empty_notes_subtitle">Nhấn nút + ở góc dưới để ghi lại ngay ý tưởng hoặc thông tin quan trọng.</string>
+    <string name="empty_search_title">Không tìm thấy kết quả</string>
+    <string name="empty_search_subtitle">Không có công việc hoặc ghi chú nào khớp với từ khóa của bạn.</string>
+
+    <!-- Kiểm tra hợp lệ & Thông báo phản hồi -->
+    <string name="error_task_title_empty">Vui lòng nhập tiêu đề công việc</string>
+    <string name="error_title_too_long">Tiêu đề không được vượt quá 200 ký tự</string>
+    <string name="error_description_too_long">Mô tả không được vượt quá 5.000 ký tự</string>
+    <string name="error_reminder_in_past">Thời điểm nhắc nhở phải nằm trong tương lai</string>
+    <string name="error_note_empty">Không thể lưu ghi chú trống. Vui lòng nhập tiêu đề hoặc nội dung</string>
+    <string name="error_note_content_too_long">Nội dung ghi chú không được vượt quá 20.000 ký tự</string>
+    <string name="error_storage_generic">Đã xảy ra lỗi truy xuất bộ nhớ cục bộ</string>
+    <string name="msg_task_saved">Đã lưu công việc thành công</string>
+    <string name="msg_task_deleted">Đã xóa công việc</string>
+    <string name="msg_note_saved">Đã lưu ghi chú thành công</string>
+    <string name="msg_note_deleted">Đã xóa ghi chú</string>
+    <string name="msg_reminder_adjusted_to_due">Đã tự động đồng bộ giờ nhắc nhở theo thời hạn mới</string>
+    <string name="msg_converted_note_to_task">Đã chuyển nội dung ghi chú sang biểu mẫu công việc</string>
+
+    <!-- Hộp thoại xác nhận Xóa & Thoát khi chưa lưu -->
+    <string name="dialog_delete_task_title">Xác nhận xóa công việc</string>
+    <string name="dialog_delete_task_message">Bạn có chắc chắn muốn xóa công việc này không? Nhắc nhở liên kết (nếu có) cũng sẽ bị hủy.</string>
+    <string name="dialog_delete_note_title">Xác nhận xóa ghi chú</string>
+    <string name="dialog_delete_note_message">Bạn có chắc chắn muốn xóa ghi chú này khỏi thiết bị không?</string>
+    <string name="dialog_discard_title">Hủy thay đổi chưa lưu?</string>
+    <string name="dialog_discard_message">Bạn có các thay đổi chưa được lưu. Bạn có muốn thoát mà không lưu không?</string>
+    <string name="action_discard">Bỏ thay đổi</string>
+    <string name="action_keep_editing">Tiếp tục sửa</string>
+
+    <!-- Nhắc nhở & Quyền hệ thống (UC 3.13 - 3.15) -->
+    <string name="notification_channel_name">Nhắc nhở công việc</string>
+    <string name="notification_channel_desc">Thông báo nhắc nhở khi công việc hằng ngày đến hạn</string>
+    <string name="notification_title_reminder">Đến giờ thực hiện công việc</string>
+    <string name="notification_action_complete">Hoàn thành ngay</string>
+    <string name="dialog_permission_notification_title">Cần quyền hiển thị thông báo</string>
+    <string name="dialog_permission_notification_msg">Để phát thông báo nhắc việc đúng giờ hẹn, vui lòng cấp quyền Thông báo cho ứng dụng TodoNotes.</string>
+    <string name="dialog_permission_exact_alarm_title">Cấp quyền báo thức chính xác</string>
+    <string name="dialog_permission_exact_alarm_msg">Thiết bị yêu cầu quyền đặt báo thức chính xác để nhắc nhở đúng từng phút. Bạn có muốn mở Cài đặt để bật quyền này không?</string>
+    <string name="action_open_settings">Mở Cài đặt</string>
+
+    <!-- Màn hình Cài đặt & Sao lưu JSON -->
+    <string name="title_settings">Cài đặt &amp; Dữ liệu</string>
+    <string name="settings_section_appearance">Giao diện &amp; Ngôn ngữ</string>
+    <string name="settings_theme_label">Chế độ giao diện</string>
+    <string name="theme_system">Theo hệ thống</string>
+    <string name="theme_light">Giao diện Sáng</string>
+    <string name="theme_dark">Giao diện Tối</string>
+    <string name="settings_language_label">Ngôn ngữ hiển thị</string>
+    <string name="lang_vietnamese">Tiếng Việt</string>
+    <string name="lang_english">Tiếng Anh (English)</string>
+    <string name="settings_section_backup">Sao lưu &amp; Khôi phục ngoại tuyến</string>
+    <string name="settings_backup_desc">Xuất toàn bộ công việc và ghi chú ra tệp JSON hoặc khôi phục từ tệp đã lưu trên thiết bị.</string>
+    <string name="action_export_json">Xuất dữ liệu sao lưu (.json)</string>
+    <string name="action_import_json">Khôi phục dữ liệu từ tệp (.json)</string>
+    <string name="msg_export_success">Đã xuất dữ liệu sao lưu thành công</string>
+    <string name="msg_import_success">Đã khôi phục %1$d công việc và %2$d ghi chú</string>
+    <string name="error_backup_invalid">Tệp JSON không hợp lệ hoặc bị hỏng</string>
+
+    <!-- Accessibility Content Descriptions -->
+    <string name="cd_add_item">Thêm mục mới</string>
+    <string name="cd_delete_item">Xóa mục này</string>
+    <string name="cd_pin_note">Ghim hoặc bỏ ghim ghi chú</string>
+    <string name="cd_task_checkbox">Đánh dấu hoàn thành công việc</string>
+    <string name="cd_note_color_option">Chọn màu thẻ ghi chú</string>
 </resources>
