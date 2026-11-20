@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+.backup_tach/
+code_moi.md
+tat_ca_code_cu.txt

@@ -1,8 +1,13 @@
 package com.vinhnt.todonotes.ui.tasks;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
@@ -11,9 +16,12 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -27,6 +35,7 @@ import com.vinhnt.todonotes.data.model.Priority;
 import com.vinhnt.todonotes.data.model.SubtaskItem;
 import com.vinhnt.todonotes.data.model.TaskCategory;
 import com.vinhnt.todonotes.databinding.ActivityAddEditTaskBinding;
+import com.vinhnt.todonotes.receiver.ReminderScheduler;
 import com.vinhnt.todonotes.util.DateTimeUtils;
 import com.vinhnt.todonotes.util.SubtaskJsonHelper;
 import com.vinhnt.todonotes.util.ValidationUtils;
@@ -40,7 +49,8 @@ import java.util.Objects;
 
 /**
 * Màn hình thống nhất cho Thêm mới (UC 3.2), Xem chi tiết (UC 3.1 bước 3) và Chỉnh sửa công việc (UC 3.3),
-* đồng thời hỗ trợ Thiết lập / Thay đổi / Hủy nhắc nhở (UC 3.13, UC 3.14) và nhận dữ liệu chuyển từ Ghi chú (BR-07).
+* đồng thời hỗ trợ Thiết lập / Thay đổi / Hủy nhắc nhở (UC 3.13, UC 3.14), xin quyền Android 12/13+
+* và nhận dữ liệu chuyển từ Ghi chú (BR-07).
   */
   public class AddEditTaskActivity extends AppCompatActivity {
 
@@ -52,6 +62,7 @@ import java.util.Objects;
   private static final String STATE_REMINDER_TIME = "state_reminder_time";
   private static final String STATE_SUBTASKS_JSON = "state_subtasks_json";
   private static final String STATE_HAS_EDITED = "state_has_edited";
+  private static final String STATE_PROMPTED_EXACT_ALARM = "state_prompted_exact_alarm";
 
   private ActivityAddEditTaskBinding binding;
   private AddEditTaskViewModel viewModel;
@@ -67,6 +78,16 @@ import java.util.Objects;
 
   private boolean isPopulatingData = false;
   private boolean hasUnsavedEdits = false;
+  private boolean hasPromptedExactAlarm = false;
+
+  private final ActivityResultLauncher<String> notificationPermissionLauncher =
+  registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+  if (Boolean.TRUE.equals(isGranted)) {
+  proceedToReminderPicker();
+  } else {
+  showNotificationSettingsDialog();
+  }
+  });
 
   @NonNull
   public static Intent newIntentForAdd(@NonNull Context context) {
@@ -150,6 +171,7 @@ import java.util.Objects;
   }
   outState.putString(STATE_SUBTASKS_JSON, SubtaskJsonHelper.toJson(subtaskAdapter.getItems()));
   outState.putBoolean(STATE_HAS_EDITED, hasUnsavedEdits);
+  outState.putBoolean(STATE_PROMPTED_EXACT_ALARM, hasPromptedExactAlarm);
   }
 
   private void restoreInstanceState(@NonNull Bundle savedInstanceState) {
@@ -162,6 +184,7 @@ import java.util.Objects;
   String subtasksJson = savedInstanceState.getString(STATE_SUBTASKS_JSON, "[]");
   subtaskAdapter.setItems(SubtaskJsonHelper.fromJson(subtasksJson));
   hasUnsavedEdits = savedInstanceState.getBoolean(STATE_HAS_EDITED, false);
+  hasPromptedExactAlarm = savedInstanceState.getBoolean(STATE_PROMPTED_EXACT_ALARM, false);
   }
 
   private void applyPrefillFromNoteIfPresent() {
@@ -228,23 +251,25 @@ import java.util.Objects;
   pickedMillis -> {
   selectedDueDateMillis = pickedMillis;
   hasUnsavedEdits = true;
-  // UC 3.15 rẽ nhánh 2: Nếu đã có nhắc nhở nhưng thời hạn mới nhỏ hơn thời điểm nhắc nhở
-  if (selectedReminderMillis != null && pickedMillis < selectedReminderMillis) {
-  if (pickedMillis > System.currentTimeMillis()) {
-  selectedReminderMillis = pickedMillis;
-  Toast.makeText(
-  this,
-  R.string.msg_reminder_adjusted_to_due,
-  Toast.LENGTH_SHORT
-  ).show();
-  } else {
-  selectedReminderMillis = null;
-  }
-  updateReminderText();
-  }
-  updateDueDateText();
-  }
-  ));
+
+                   // UC 3.15 rẽ nhánh 2: Đồng bộ thời điểm nhắc nhở nếu thời hạn mới lùi về sớm hơn
+                   Long adjustedReminder = ReminderScheduler.resolveReminderAfterDueDateChange(
+                           selectedReminderMillis,
+                           pickedMillis,
+                           System.currentTimeMillis()
+                   );
+                   if (!Objects.equals(adjustedReminder, selectedReminderMillis)) {
+                       selectedReminderMillis = adjustedReminder;
+                       Toast.makeText(
+                               this,
+                               R.string.msg_reminder_adjusted_to_due,
+                               Toast.LENGTH_SHORT
+                       ).show();
+                       updateReminderText();
+                   }
+                   updateDueDateText();
+               }
+       ));
 
        binding.btnClearDueDate.setOnClickListener(v -> {
            selectedDueDateMillis = null;
@@ -252,24 +277,106 @@ import java.util.Objects;
            updateDueDateText();
        });
 
-       binding.btnPickReminder.setOnClickListener(v -> showDateTimePicker(
-               selectedReminderMillis != null ? selectedReminderMillis : selectedDueDateMillis,
-               pickedMillis -> {
-                   if (pickedMillis <= System.currentTimeMillis()) {
-                       Toast.makeText(this, R.string.error_reminder_in_past, Toast.LENGTH_SHORT).show();
-                       return;
-                   }
-                   selectedReminderMillis = pickedMillis;
-                   hasUnsavedEdits = true;
-                   updateReminderText();
-               }
-       ));
+       binding.btnPickReminder.setOnClickListener(v -> handlePickReminderClick());
 
        binding.btnClearReminder.setOnClickListener(v -> {
            selectedReminderMillis = null;
            hasUnsavedEdits = true;
            updateReminderText();
        });
+  }
+
+  /**
+  * Kiểm tra quyền Thông báo (Android 13+) đúng lúc người dùng muốn đặt nhắc nhở (UC 3.13 rẽ nhánh 2).
+    */
+    private void handlePickReminderClick() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+    boolean granted = ContextCompat.checkSelfPermission(
+    this,
+    Manifest.permission.POST_NOTIFICATIONS
+    ) == PackageManager.PERMISSION_GRANTED;
+
+         if (!granted) {
+             if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+                 new MaterialAlertDialogBuilder(this)
+                         .setTitle(R.string.dialog_permission_notification_title)
+                         .setMessage(R.string.dialog_permission_notification_msg)
+                         .setNegativeButton(R.string.action_cancel, null)
+                         .setPositiveButton(android.R.string.ok, (dialog, which) ->
+                                 notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS))
+                         .show();
+             } else {
+                 notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+             }
+             return;
+         }
+    }
+    proceedToReminderPicker();
+    }
+
+  private void proceedToReminderPicker() {
+  showDateTimePicker(
+  selectedReminderMillis != null ? selectedReminderMillis : selectedDueDateMillis,
+  pickedMillis -> {
+  if (pickedMillis <= System.currentTimeMillis()) {
+  Toast.makeText(this, R.string.error_reminder_in_past, Toast.LENGTH_SHORT).show();
+  return;
+  }
+  selectedReminderMillis = pickedMillis;
+  hasUnsavedEdits = true;
+  updateReminderText();
+
+                   // Android 12+ (API 31+): Nếu chưa có quyền báo thức chính xác, gợi ý mở Cài đặt
+                   if (!ReminderScheduler.canScheduleExactAlarms(this) && !hasPromptedExactAlarm) {
+                       hasPromptedExactAlarm = true;
+                       showExactAlarmSettingsDialog();
+                   }
+               }
+       );
+  }
+
+  private void showNotificationSettingsDialog() {
+  new MaterialAlertDialogBuilder(this)
+  .setTitle(R.string.dialog_permission_notification_title)
+  .setMessage(R.string.dialog_permission_notification_msg)
+  .setNegativeButton(R.string.action_cancel, null)
+  .setPositiveButton(R.string.action_open_settings, (dialog, which) -> openAppNotificationSettings())
+  .show();
+  }
+
+  private void showExactAlarmSettingsDialog() {
+  new MaterialAlertDialogBuilder(this)
+  .setTitle(R.string.dialog_permission_exact_alarm_title)
+  .setMessage(R.string.dialog_permission_exact_alarm_msg)
+  .setNegativeButton(R.string.action_cancel, null)
+  .setPositiveButton(R.string.action_open_settings, (dialog, which) -> openExactAlarmSettings())
+  .show();
+  }
+
+  private void openAppNotificationSettings() {
+  Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+  intent.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
+  try {
+  startActivity(intent);
+  } catch (Exception e) {
+  Intent fallback = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+  fallback.setData(Uri.parse("package:" + getPackageName()));
+  startActivity(fallback);
+  }
+  }
+
+  private void openExactAlarmSettings() {
+  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+  Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
+  intent.setData(Uri.parse("package:" + getPackageName()));
+  try {
+  startActivity(intent);
+  } catch (Exception e) {
+  Intent fallback = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+  fallback.setData(Uri.parse("package:" + getPackageName()));
+  startActivity(fallback);
+  }
+  }
   }
 
   private interface OnDateTimePickedListener {

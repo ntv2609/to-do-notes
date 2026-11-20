@@ -11,6 +11,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.vinhnt.todonotes.data.local.entity.TaskEntity;
 import com.vinhnt.todonotes.data.repository.TaskRepository;
 
+import java.util.Objects;
+
 /**
 * ViewModel phục vụ màn hình AddEditTaskActivity: tải công việc cần sửa, lưu mới, cập nhật và xóa.
   */
@@ -73,8 +75,9 @@ import com.vinhnt.todonotes.data.repository.TaskRepository;
   updated.setCategory(category);
   updated.setDueDate(dueDateMillis);
 
-           // Nếu người dùng đổi giờ nhắc nhở mới ở tương lai, đặt lại cờ reminderFired = false
-           if (reminderTimeMillis != null && !reminderTimeMillis.equals(existingTask.getReminderTime())) {
+           // Nếu hủy nhắc nhở hoặc thay đổi giờ nhắc nhở mới -> đặt lại cờ reminderFired = false
+           if (reminderTimeMillis == null
+                   || !Objects.equals(reminderTimeMillis, existingTask.getReminderTime())) {
                updated.setReminderFired(false);
            }
            updated.setReminderTime(reminderTimeMillis);
