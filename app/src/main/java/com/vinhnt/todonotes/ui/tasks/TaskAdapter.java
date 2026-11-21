@@ -3,12 +3,14 @@ package com.vinhnt.todonotes.ui.tasks;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Paint;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.TextViewCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,7 +27,7 @@ import com.vinhnt.todonotes.util.SubtaskJsonHelper;
 import java.util.List;
 
 /**
-* Adapter hiển thị danh sách công việc dùng ListAdapter + DiffUtil chuẩn hiệu năng cao.
+* Adapter hien thi danh sach cong viec voi ListAdapter + DiffUtil.
   */
   public class TaskAdapter extends ListAdapter<TaskEntity, TaskAdapter.TaskViewHolder> {
 
@@ -85,14 +87,14 @@ import java.util.List;
        void bind(@NonNull TaskEntity task, @NonNull OnTaskInteractionListener listener) {
            Context context = binding.getRoot().getContext();
 
-           // 1. Tiêu đề & hiệu ứng gạch ngang khi đã hoàn thành (docs/DESIGN.md 4.2)
+           // 1. Tieu de va trang thai hoan thanh
            binding.tvTaskTitle.setText(task.getTitle());
            if (task.isCompleted()) {
                binding.tvTaskTitle.setPaintFlags(
                        binding.tvTaskTitle.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG
                );
                binding.tvTaskTitle.setTextColor(ContextCompat.getColor(context, R.color.color_text_disabled));
-               binding.cardTaskItem.setAlpha(0.78f);
+               binding.cardTaskItem.setAlpha(0.72f);
            } else {
                binding.tvTaskTitle.setPaintFlags(
                        binding.tvTaskTitle.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG)
@@ -101,7 +103,7 @@ import java.util.List;
                binding.cardTaskItem.setAlpha(1.0f);
            }
 
-           // 2. Mô tả ngắn
+           // 2. Mo ta ngan
            String desc = task.getDescription().trim();
            if (desc.isEmpty()) {
                binding.tvTaskDescription.setVisibility(View.GONE);
@@ -110,22 +112,23 @@ import java.util.List;
                binding.tvTaskDescription.setText(desc);
            }
 
-           // 3. Checkbox: Gỡ listener trước khi setChecked để tránh callback giả khi cuộn RecyclerView
+           // 3. Checkbox kem phan hoi rung nhe khi nguoi dung cham
            binding.cbTaskCompleted.setOnCheckedChangeListener(null);
            binding.cbTaskCompleted.setChecked(task.isCompleted());
            binding.cbTaskCompleted.setOnCheckedChangeListener((buttonView, isChecked) -> {
                if (buttonView.isPressed()) {
+                   buttonView.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK);
                    listener.onTaskCheckChanged(task, isChecked);
                }
            });
 
-           // 4. Huy hiệu Độ ưu tiên (Priority Badge)
-           bindPriorityBadge(context, Priority.fromValue(task.getPriority()));
+           // 4. Do uu tien dang cham tron nho + chu
+           bindPriorityIndicator(context, Priority.fromValue(task.getPriority()));
 
-           // 5. Huy hiệu Nhãn phân loại (Category Badge)
-           bindCategoryBadge(context, TaskCategory.fromValue(task.getCategory()));
+           // 5. Nhan phan loai trung tinh
+           bindCategoryTag(context, TaskCategory.fromValue(task.getCategory()));
 
-           // 6. Tiến độ Công việc con (Subtasks)
+           // 6. Tien do cong viec con
            List<SubtaskItem> subtasks = SubtaskJsonHelper.fromJson(task.getSubtasksJson());
            if (subtasks.isEmpty()) {
                binding.tvBadgeSubtasks.setVisibility(View.GONE);
@@ -137,7 +140,7 @@ import java.util.List;
                );
            }
 
-           // 7. Thời hạn hoàn thành & Biểu tượng Nhắc nhở
+           // 7. Han chot va bieu tuong nhac nho
            Long dueDate = task.getDueDate();
            Long reminderTime = task.getReminderTime();
            boolean hasDue = dueDate != null && dueDate > 0L;
@@ -179,41 +182,39 @@ import java.util.List;
                binding.ivTaskReminder.setVisibility(hasReminder ? View.VISIBLE : View.GONE);
            }
 
-           // 8. Sự kiện bấm vào thẻ & bấm nút xóa
+           // 8. Su kien bam vao the va nut xoa
            binding.cardTaskItem.setOnClickListener(v -> listener.onTaskClicked(task));
            binding.btnDeleteTask.setOnClickListener(v -> listener.onTaskDeleteClicked(task));
        }
 
-       private void bindPriorityBadge(@NonNull Context context, @NonNull Priority priority) {
+       private void bindPriorityIndicator(@NonNull Context context, @NonNull Priority priority) {
            int textRes;
-           int textColorRes;
-           int bgColorRes;
+           int colorRes;
            switch (priority) {
                case HIGH:
                    textRes = R.string.priority_high;
-                   textColorRes = R.color.priority_high_text;
-                   bgColorRes = R.color.priority_high_bg;
+                   colorRes = R.color.priority_high_text;
                    break;
                case LOW:
                    textRes = R.string.priority_low;
-                   textColorRes = R.color.priority_low_text;
-                   bgColorRes = R.color.priority_low_bg;
+                   colorRes = R.color.priority_low_text;
                    break;
                case MEDIUM:
                default:
                    textRes = R.string.priority_medium;
-                   textColorRes = R.color.priority_medium_text;
-                   bgColorRes = R.color.priority_medium_bg;
+                   colorRes = R.color.priority_medium_text;
                    break;
            }
+           int resolvedColor = ContextCompat.getColor(context, colorRes);
            binding.tvBadgePriority.setText(textRes);
-           binding.tvBadgePriority.setTextColor(ContextCompat.getColor(context, textColorRes));
-           binding.tvBadgePriority.setBackgroundTintList(
-                   ColorStateList.valueOf(ContextCompat.getColor(context, bgColorRes))
+           binding.tvBadgePriority.setTextColor(resolvedColor);
+           TextViewCompat.setCompoundDrawableTintList(
+                   binding.tvBadgePriority,
+                   ColorStateList.valueOf(resolvedColor)
            );
        }
 
-       private void bindCategoryBadge(@NonNull Context context, @NonNull TaskCategory category) {
+       private void bindCategoryTag(@NonNull Context context, @NonNull TaskCategory category) {
            int labelRes;
            switch (category) {
                case STUDY:
@@ -235,7 +236,7 @@ import java.util.List;
            }
            binding.tvBadgeCategory.setText(labelRes);
            binding.tvBadgeCategory.setBackgroundTintList(
-                   ColorStateList.valueOf(ContextCompat.getColor(context, R.color.color_primary_container))
+                   ColorStateList.valueOf(ContextCompat.getColor(context, R.color.color_surface_elevated))
            );
        }
   }

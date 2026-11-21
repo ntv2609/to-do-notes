@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingHorizontal="12dp"
-    android:paddingTop="8dp">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/color_background"
+android:orientation="vertical"
+android:paddingTop="@dimen/space_3">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_search_notes"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_search_notes"
+        android:layout_marginHorizontal="@dimen/screen_margin"
+        app:boxBackgroundColor="@color/color_surface_elevated"
+        app:boxCornerRadiusBottomEnd="@dimen/radius_control"
+        app:boxCornerRadiusBottomStart="@dimen/radius_control"
+        app:boxCornerRadiusTopEnd="@dimen/radius_control"
+        app:boxCornerRadiusTopStart="@dimen/radius_control"
+        app:boxStrokeColor="@color/color_primary"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="1dp"
         app:endIconMode="clear_text"
-        app:startIconDrawable="@drawable/ic_search">
+        app:hintEnabled="false"
+        app:startIconDrawable="@drawable/ic_search"
+        app:startIconTint="@color/color_text_secondary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_search_notes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/hint_search_notes"
+            android:imeOptions="actionSearch"
             android:inputType="text"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:paddingVertical="10dp"
+            android:textColor="@color/color_text_primary"
+            android:textColorHint="@color/color_text_disabled"
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <FrameLayout
@@ -36,7 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingBottom="80dp"
+            android:paddingHorizontal="10dp"
+            android:paddingBottom="96dp"
             tools:listitem="@layout/item_note" />
 
         <LinearLayout
@@ -44,15 +61,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="36dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="24dp"
             android:visibility="gone"
             tools:visibility="visible">
 
             <ImageView
-                android:layout_width="96dp"
-                android:layout_height="96dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/empty_notes_title"
                 android:src="@drawable/ic_note"
                 app:tint="@color/color_text_disabled" />
@@ -61,21 +78,19 @@
                 android:id="@+id/tv_empty_notes_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
                 android:text="@string/empty_notes_title"
-                android:textColor="@color/color_text_primary"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textAppearance="@style/TextAppearance.TodoNotes.ItemTitle" />
 
             <TextView
                 android:id="@+id/tv_empty_notes_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:gravity="center"
                 android:text="@string/empty_notes_subtitle"
-                android:textColor="@color/color_text_secondary"
-                android:textSize="14sp" />
+                android:textAppearance="@style/TextAppearance.TodoNotes.Body" />
         </LinearLayout>
     </FrameLayout>
 </LinearLayout>

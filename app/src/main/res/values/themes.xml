@@ -1,5 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme (Light Mode - docs/DESIGN.md) -->
     <style name="Base.Theme.TodoNotes" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorOnPrimary">@color/color_on_primary</item>
@@ -7,60 +6,80 @@
         <item name="colorOnPrimaryContainer">@color/color_on_primary_container</item>
         <item name="colorSecondary">@color/color_secondary</item>
         <item name="colorOnSecondary">@color/color_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/color_primary_container</item>
+        <item name="colorOnSecondaryContainer">@color/color_on_primary_container</item>
         <item name="android:colorBackground">@color/color_background</item>
         <item name="colorSurface">@color/color_surface</item>
+        <item name="colorSurfaceContainer">@color/color_surface</item>
+        <item name="colorSurfaceContainerLow">@color/color_surface</item>
+        <item name="colorSurfaceContainerHigh">@color/color_surface_elevated</item>
         <item name="colorOnSurface">@color/color_text_primary</item>
         <item name="colorOnSurfaceVariant">@color/color_text_secondary</item>
-        <item name="colorOutline">@color/color_glass_stroke</item>
+        <item name="colorOutline">@color/color_divider</item>
+        <item name="colorOutlineVariant">@color/color_divider</item>
         <item name="colorError">@color/status_overdue_text</item>
         <item name="android:statusBarColor">@color/color_surface</item>
+        <item name="android:navigationBarColor">@color/color_surface</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.TodoNotes" parent="Base.Theme.TodoNotes" />
 
-    <!-- Hệ thống Typography chuẩn docs/DESIGN.md -->
     <style name="TextAppearance.TodoNotes.ToolbarTitle" parent="TextAppearance.Material3.TitleLarge">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.015</item>
         <item name="android:textColor">@color/color_text_primary</item>
     </style>
 
-    <style name="TextAppearance.TodoNotes.HeadlineMetric" parent="TextAppearance.Material3.HeadlineSmall">
+    <style name="TextAppearance.TodoNotes.HeadlineMetric" parent="TextAppearance.Material3.TitleMedium">
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFeatureSettings">tnum</item>
         <item name="android:textColor">@color/color_primary</item>
     </style>
 
     <style name="TextAppearance.TodoNotes.ItemTitle" parent="TextAppearance.Material3.TitleMedium">
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">15.5sp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
         <item name="android:textColor">@color/color_text_primary</item>
     </style>
 
     <style name="TextAppearance.TodoNotes.EditorTitle" parent="TextAppearance.Material3.TitleLarge">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.01</item>
         <item name="android:textColor">@color/color_text_primary</item>
     </style>
 
     <style name="TextAppearance.TodoNotes.Body" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
         <item name="android:textColor">@color/color_text_secondary</item>
     </style>
 
     <style name="TextAppearance.TodoNotes.Caption" parent="TextAppearance.Material3.BodySmall">
         <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">12.5sp</item>
+        <item name="android:fontFeatureSettings">tnum</item>
         <item name="android:textColor">@color/color_text_secondary</item>
     </style>
 
     <style name="TextAppearance.TodoNotes.Badge" parent="TextAppearance.Material3.LabelMedium">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.TodoNotes.FilterChip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipCornerRadius">10dp</item>
+        <item name="chipMinHeight">34dp</item>
+        <item name="chipMinTouchTargetSize">40dp</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipStrokeColor">@color/color_divider</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 </resources>

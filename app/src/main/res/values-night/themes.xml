@@ -1,5 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme (Dark Mode - docs/DESIGN.md) -->
     <style name="Base.Theme.TodoNotes" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorOnPrimary">@color/color_on_primary</item>
@@ -7,13 +6,20 @@
         <item name="colorOnPrimaryContainer">@color/color_on_primary_container</item>
         <item name="colorSecondary">@color/color_secondary</item>
         <item name="colorOnSecondary">@color/color_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/color_primary_container</item>
+        <item name="colorOnSecondaryContainer">@color/color_on_primary_container</item>
         <item name="android:colorBackground">@color/color_background</item>
         <item name="colorSurface">@color/color_surface</item>
+        <item name="colorSurfaceContainer">@color/color_surface</item>
+        <item name="colorSurfaceContainerLow">@color/color_surface</item>
+        <item name="colorSurfaceContainerHigh">@color/color_surface_elevated</item>
         <item name="colorOnSurface">@color/color_text_primary</item>
         <item name="colorOnSurfaceVariant">@color/color_text_secondary</item>
-        <item name="colorOutline">@color/color_glass_stroke</item>
+        <item name="colorOutline">@color/color_divider</item>
+        <item name="colorOutlineVariant">@color/color_divider</item>
         <item name="colorError">@color/status_overdue_text</item>
         <item name="android:statusBarColor">@color/color_surface</item>
+        <item name="android:navigationBarColor">@color/color_surface</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
 </resources>

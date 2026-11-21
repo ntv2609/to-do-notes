@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_note"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="6dp"
-    android:clickable="true"
-    android:focusable="true"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="2dp"
-    app:strokeWidth="1dp">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/card_note"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_margin="6dp"
+android:clickable="true"
+android:focusable="true"
+android:foreground="?attr/selectableItemBackground"
+app:cardCornerRadius="@dimen/radius_card"
+app:cardElevation="0dp"
+app:strokeWidth="@dimen/stroke_hairline">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="14dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,18 +32,16 @@
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:textColor="@color/color_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:text="Ý tưởng ứng dụng TodoNotes" />
+                android:textAppearance="@style/TextAppearance.TodoNotes.ItemTitle"
+                tools:text="Y tuong ung dung TodoNotes" />
 
             <ImageButton
                 android:id="@+id/ib_pin"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/action_pin"
-                android:padding="4dp"
+                android:padding="6dp"
                 android:src="@drawable/ic_pin"
                 app:tint="@color/color_text_secondary" />
         </LinearLayout>
@@ -54,14 +53,13 @@
             android:layout_marginTop="6dp"
             android:ellipsize="end"
             android:maxLines="6"
-            android:textColor="@color/color_text_secondary"
-            android:textSize="14sp"
-            tools:text="Nội dung ghi chú chi tiết hiển thị ở đây..." />
+            android:textAppearance="@style/TextAppearance.TodoNotes.Body"
+            tools:text="Noi dung ghi chu hien thi gon gang de doc nhanh" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -70,19 +68,20 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.TodoNotes.Caption"
                 android:textColor="@color/color_text_disabled"
-                android:textSize="12sp"
-                tools:text="Cập nhật: 15/11 14:30" />
+                tools:text="Cap nhat: 15/11 14:30" />
 
             <ImageButton
                 android:id="@+id/ib_delete"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:alpha="0.55"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/action_delete"
-                android:padding="4dp"
+                android:padding="5dp"
                 android:src="@drawable/ic_delete"
-                app:tint="@color/color_text_disabled" />
+                app:tint="@color/color_text_secondary" />
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -4,7 +4,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:fitsSystemWindows="true"
 android:background="@color/color_background"
 tools:context=".ui.tasks.AddEditTaskActivity">
 
@@ -12,7 +11,8 @@ tools:context=".ui.tasks.AddEditTaskActivity">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_surface"
-        app:elevation="0dp">
+        app:elevation="0dp"
+        app:liftOnScroll="false">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_add_edit_task"
@@ -27,7 +27,7 @@ tools:context=".ui.tasks.AddEditTaskActivity">
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/stroke_hairline"
             android:background="@color/color_divider" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -43,9 +43,8 @@ tools:context=".ui.tasks.AddEditTaskActivity">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/screen_margin">
 
-            <!-- Checkbox trạng thái hoàn thành (chỉ hiện khi chỉnh sửa công việc đã có) -->
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cb_detail_completed"
                 android:layout_width="match_parent"
@@ -57,21 +56,21 @@ tools:context=".ui.tasks.AddEditTaskActivity">
                 android:visibility="gone"
                 tools:visibility="visible" />
 
-            <!-- Ô nhập Tiêu đề & Mô tả công việc (Soft Glass Card) -->
+            <!-- Thong tin chinh -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/color_surface_glass"
-                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="@color/color_surface"
+                app:cardCornerRadius="@dimen/radius_card"
                 app:cardElevation="0dp"
-                app:strokeColor="@color/color_glass_stroke"
-                app:strokeWidth="1dp">
+                app:strokeColor="@color/color_divider"
+                app:strokeWidth="@dimen/stroke_hairline">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="@dimen/space_4">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_task_title"
@@ -79,10 +78,10 @@ tools:context=".ui.tasks.AddEditTaskActivity">
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_task_title"
-                        app:boxCornerRadiusBottomEnd="12dp"
-                        app:boxCornerRadiusBottomStart="12dp"
-                        app:boxCornerRadiusTopEnd="12dp"
-                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusBottomEnd="@dimen/radius_control"
+                        app:boxCornerRadiusBottomStart="@dimen/radius_control"
+                        app:boxCornerRadiusTopEnd="@dimen/radius_control"
+                        app:boxCornerRadiusTopStart="@dimen/radius_control"
                         app:counterEnabled="true"
                         app:counterMaxLength="200">
 
@@ -102,10 +101,10 @@ tools:context=".ui.tasks.AddEditTaskActivity">
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:hint="@string/hint_task_description"
-                        app:boxCornerRadiusBottomEnd="12dp"
-                        app:boxCornerRadiusBottomStart="12dp"
-                        app:boxCornerRadiusTopEnd="12dp"
-                        app:boxCornerRadiusTopStart="12dp">
+                        app:boxCornerRadiusBottomEnd="@dimen/radius_control"
+                        app:boxCornerRadiusBottomStart="@dimen/radius_control"
+                        app:boxCornerRadiusTopEnd="@dimen/radius_control"
+                        app:boxCornerRadiusTopStart="@dimen/radius_control">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/et_task_description"
@@ -119,22 +118,22 @@ tools:context=".ui.tasks.AddEditTaskActivity">
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Chọn Mức độ ưu tiên & Nhãn phân loại -->
+            <!-- Uu tien va phan loai -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/color_surface_glass"
-                app:cardCornerRadius="16dp"
+                android:layout_marginTop="@dimen/space_3"
+                app:cardBackgroundColor="@color/color_surface"
+                app:cardCornerRadius="@dimen/radius_card"
                 app:cardElevation="0dp"
-                app:strokeColor="@color/color_glass_stroke"
-                app:strokeWidth="1dp">
+                app:strokeColor="@color/color_divider"
+                app:strokeWidth="@dimen/stroke_hairline">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="@dimen/space_4">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -146,20 +145,21 @@ tools:context=".ui.tasks.AddEditTaskActivity">
                         android:id="@+id/chip_group_priority"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="8dp"
+                        app:chipSpacingHorizontal="6dp"
                         app:selectionRequired="true"
                         app:singleSelection="true">
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_priority_low"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/Widget.TodoNotes.FilterChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/priority_low" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_priority_medium"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/Widget.TodoNotes.FilterChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
@@ -167,7 +167,7 @@ tools:context=".ui.tasks.AddEditTaskActivity">
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_priority_high"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/Widget.TodoNotes.FilterChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/priority_high" />
@@ -176,7 +176,7 @@ tools:context=".ui.tasks.AddEditTaskActivity">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="14dp"
                         android:text="@string/label_task_category"
                         android:textAppearance="@style/TextAppearance.TodoNotes.ItemTitle" />
 
@@ -184,13 +184,14 @@ tools:context=".ui.tasks.AddEditTaskActivity">
                         android:id="@+id/chip_group_task_category"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="8dp"
+                        app:chipSpacingHorizontal="6dp"
                         app:selectionRequired="true"
                         app:singleSelection="true">
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_task_cat_personal"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/Widget.TodoNotes.FilterChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
@@ -198,28 +199,28 @@ tools:context=".ui.tasks.AddEditTaskActivity">
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_task_cat_study"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/Widget.TodoNotes.FilterChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/category_study" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_task_cat_work"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/Widget.TodoNotes.FilterChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/category_work" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_task_cat_shopping"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/Widget.TodoNotes.FilterChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/category_shopping" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_task_cat_other"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/Widget.TodoNotes.FilterChip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/category_other" />
@@ -227,22 +228,22 @@ tools:context=".ui.tasks.AddEditTaskActivity">
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Thời hạn hoàn thành (Due Date) & Nhắc nhở (Reminder - UC 3.13, 3.14) -->
+            <!-- Thoi han va nhac nho -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/color_surface_glass"
-                app:cardCornerRadius="16dp"
+                android:layout_marginTop="@dimen/space_3"
+                app:cardBackgroundColor="@color/color_surface"
+                app:cardCornerRadius="@dimen/radius_card"
                 app:cardElevation="0dp"
-                app:strokeColor="@color/color_glass_stroke"
-                app:strokeWidth="1dp">
+                app:strokeColor="@color/color_divider"
+                app:strokeWidth="@dimen/stroke_hairline">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="@dimen/space_4">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -284,9 +285,8 @@ tools:context=".ui.tasks.AddEditTaskActivity">
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_height="@dimen/stroke_hairline"
+                        android:layout_marginVertical="12dp"
                         android:background="@color/color_divider" />
 
                     <TextView
@@ -330,22 +330,22 @@ tools:context=".ui.tasks.AddEditTaskActivity">
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Danh sách Công việc con (Subtasks Checklist) -->
+            <!-- Cong viec con -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/color_surface_glass"
-                app:cardCornerRadius="16dp"
+                android:layout_marginTop="@dimen/space_3"
+                app:cardBackgroundColor="@color/color_surface"
+                app:cardCornerRadius="@dimen/radius_card"
                 app:cardElevation="0dp"
-                app:strokeColor="@color/color_glass_stroke"
-                app:strokeWidth="1dp">
+                app:strokeColor="@color/color_divider"
+                app:strokeWidth="@dimen/stroke_hairline">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="@dimen/space_4">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -367,10 +367,10 @@ tools:context=".ui.tasks.AddEditTaskActivity">
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/hint_add_subtask"
-                            app:boxCornerRadiusBottomEnd="12dp"
-                            app:boxCornerRadiusBottomStart="12dp"
-                            app:boxCornerRadiusTopEnd="12dp"
-                            app:boxCornerRadiusTopStart="12dp">
+                            app:boxCornerRadiusBottomEnd="@dimen/radius_control"
+                            app:boxCornerRadiusBottomStart="@dimen/radius_control"
+                            app:boxCornerRadiusTopEnd="@dimen/radius_control"
+                            app:boxCornerRadiusTopStart="@dimen/radius_control">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/et_new_subtask"

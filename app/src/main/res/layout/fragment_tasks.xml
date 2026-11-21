@@ -6,34 +6,37 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="@color/color_background">
 
-    <!-- Thẻ Thống kê Tiến độ (Hero Progress Card - docs/DESIGN.md 4.1) -->
+    <!-- Dai tom tat tien do gon 1 hang -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_progress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        app:cardBackgroundColor="@color/color_surface_elevated"
-        app:cardCornerRadius="20dp"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginTop="@dimen/space_3"
+        android:layout_marginEnd="@dimen/screen_margin"
+        app:cardBackgroundColor="@color/color_surface"
+        app:cardCornerRadius="@dimen/radius_card"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/color_glass_stroke"
-        app:strokeWidth="1dp">
+        app:strokeColor="@color/color_divider"
+        app:strokeWidth="@dimen/stroke_hairline">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="12dp">
 
             <TextView
                 android:id="@+id/tv_progress_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/progress_card_title"
-                android:textAppearance="@style/TextAppearance.TodoNotes.ItemTitle"
+                android:textAppearance="@style/TextAppearance.TodoNotes.Caption"
+                android:textColor="@color/color_text_primary"
+                android:fontFamily="sans-serif-medium"
                 app:layout_constraintEnd_toStartOf="@id/tv_progress_percent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +50,7 @@ android:background="@color/color_background">
                 app:layout_constraintEnd_toStartOf="@id/tv_progress_percent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_progress_title"
-                tools:text="2/4 hoàn thành • 0 quá hạn" />
+                tools:text="2/4 hoan thanh • 0 qua han" />
 
             <TextView
                 android:id="@+id/tv_progress_percent"
@@ -63,34 +66,36 @@ android:background="@color/color_background">
                 android:id="@+id/progress_bar_tasks"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 android:max="100"
                 app:indicatorColor="@color/color_primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_progress_summary"
-                app:trackColor="@color/color_primary_container"
-                app:trackCornerRadius="4dp"
-                app:trackThickness="8dp" />
+                app:trackColor="@color/color_surface_elevated"
+                app:trackCornerRadius="2dp"
+                app:trackThickness="4dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Ô tìm kiếm nhanh trong tab Công việc -->
+    <!-- O tim kiem phang, nhe mat -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_search_tasks"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/screen_margin"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        app:boxBackgroundColor="@color/color_surface_glass"
-        app:boxCornerRadiusBottomEnd="16dp"
-        app:boxCornerRadiusBottomStart="16dp"
-        app:boxCornerRadiusTopEnd="16dp"
-        app:boxCornerRadiusTopStart="16dp"
-        app:boxStrokeColor="@color/color_glass_stroke"
+        android:layout_marginEnd="@dimen/screen_margin"
+        app:boxBackgroundColor="@color/color_surface_elevated"
+        app:boxCornerRadiusBottomEnd="@dimen/radius_control"
+        app:boxCornerRadiusBottomStart="@dimen/radius_control"
+        app:boxCornerRadiusTopEnd="@dimen/radius_control"
+        app:boxCornerRadiusTopStart="@dimen/radius_control"
+        app:boxStrokeColor="@color/color_primary"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="1dp"
         app:endIconMode="clear_text"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,22 +112,20 @@ android:background="@color/color_background">
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:maxLines="1"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingVertical="10dp"
             android:textColor="@color/color_text_primary"
             android:textColorHint="@color/color_text_disabled"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Dãy Chip lọc theo Trạng thái (UC 3.11) -->
+    <!-- Chip loc trang thai -->
     <HorizontalScrollView
         android:id="@+id/scroll_status_chips"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="6dp"
         android:clipToPadding="false"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:paddingHorizontal="@dimen/screen_margin"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,13 +135,14 @@ android:background="@color/color_background">
             android:id="@+id/chip_group_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:chipSpacingHorizontal="6dp"
             app:selectionRequired="true"
             app:singleLine="true"
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_status_all"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.TodoNotes.FilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
@@ -146,42 +150,41 @@ android:background="@color/color_background">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_status_active"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.TodoNotes.FilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/filter_active" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_status_completed"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.TodoNotes.FilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/filter_completed" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_status_overdue"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.TodoNotes.FilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/filter_overdue" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_status_today"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.TodoNotes.FilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/filter_today" />
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 
-    <!-- Dãy Chip lọc theo Nhãn phân loại (Category) -->
+    <!-- Chip loc nhan phan loai -->
     <HorizontalScrollView
         android:id="@+id/scroll_category_chips"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:paddingHorizontal="@dimen/screen_margin"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -191,13 +194,14 @@ android:background="@color/color_background">
             android:id="@+id/chip_group_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:chipSpacingHorizontal="6dp"
             app:selectionRequired="true"
             app:singleLine="true"
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_cat_all"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.TodoNotes.FilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
@@ -205,51 +209,49 @@ android:background="@color/color_background">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_cat_personal"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.TodoNotes.FilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/category_personal" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_cat_study"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.TodoNotes.FilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/category_study" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_cat_work"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.TodoNotes.FilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/category_work" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_cat_shopping"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.TodoNotes.FilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/category_shopping" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_cat_other"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.TodoNotes.FilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/category_other" />
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 
-    <!-- Danh sách Công việc (RecyclerView) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_tasks"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="4dp"
         android:clipToPadding="false"
-        android:paddingStart="16dp"
+        android:paddingHorizontal="@dimen/screen_margin"
         android:paddingTop="4dp"
-        android:paddingEnd="16dp"
         android:paddingBottom="96dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -257,13 +259,12 @@ android:background="@color/color_background">
         app:layout_constraintTop_toBottomOf="@id/scroll_category_chips"
         tools:listitem="@layout/item_task" />
 
-    <!-- Trạng thái rỗng (EmptyStateView - docs/DESIGN.md 4.8) -->
+    <!-- Trang thai rong gian di -->
     <LinearLayout
         android:id="@+id/layout_empty_tasks"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginHorizontal="36dp"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone"
@@ -273,28 +274,18 @@ android:background="@color/color_background">
         app:layout_constraintTop_toBottomOf="@id/scroll_category_chips"
         tools:visibility="visible">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            app:cardBackgroundColor="@color/color_primary_container"
-            app:cardCornerRadius="36dp"
-            app:cardElevation="0dp"
-            app:strokeWidth="0dp">
-
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center"
-                android:importantForAccessibility="no"
-                android:src="@drawable/ic_task"
-                app:tint="@color/color_primary" />
-        </com.google.android.material.card.MaterialCardView>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_task"
+            app:tint="@color/color_text_disabled" />
 
         <TextView
             android:id="@+id/tv_empty_tasks_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="14dp"
             android:gravity="center"
             android:text="@string/empty_tasks_title"
             android:textAppearance="@style/TextAppearance.TodoNotes.ItemTitle" />

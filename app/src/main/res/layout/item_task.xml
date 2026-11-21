@@ -9,21 +9,20 @@ android:layout_marginBottom="8dp"
 android:clickable="true"
 android:focusable="true"
 android:foreground="?attr/selectableItemBackground"
-app:cardBackgroundColor="@color/color_surface_glass"
-app:cardCornerRadius="16dp"
-app:cardElevation="1dp"
-app:strokeColor="@color/color_glass_stroke"
-app:strokeWidth="1dp">
+app:cardBackgroundColor="@color/color_surface"
+app:cardCornerRadius="@dimen/radius_card"
+app:cardElevation="0dp"
+app:strokeColor="@color/color_divider"
+app:strokeWidth="@dimen/stroke_hairline">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="8dp"
-        android:paddingTop="12dp"
-        android:paddingEnd="8dp"
+        android:paddingStart="6dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="4dp"
         android:paddingBottom="12dp">
 
-        <!-- Cột 1: Checkbox hoàn thành (Vùng chạm >= 48dp) -->
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/cb_task_completed"
             android:layout_width="48dp"
@@ -34,32 +33,31 @@ app:strokeWidth="1dp">
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Cột 2: Tiêu đề, Mô tả ngắn & Hàng Huy hiệu -->
         <TextView
             android:id="@+id/tv_task_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="6dp"
             android:ellipsize="end"
             android:maxLines="2"
             android:textAppearance="@style/TextAppearance.TodoNotes.ItemTitle"
             app:layout_constraintEnd_toStartOf="@id/btn_delete_task"
             app:layout_constraintStart_toEndOf="@id/cb_task_completed"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Hoàn thành báo cáo môn Lập trình Android" />
+            tools:text="Hoan thanh bao cao mon Lap trinh Android" />
 
         <TextView
             android:id="@+id/tv_task_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="3dp"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="1"
             android:textAppearance="@style/TextAppearance.TodoNotes.Body"
             app:layout_constraintEnd_toStartOf="@id/btn_delete_task"
             app:layout_constraintStart_toEndOf="@id/cb_task_completed"
             app:layout_constraintTop_toBottomOf="@id/tv_task_title"
-            tools:text="Rà soát 15 Use Case và kiểm thử Room DAO trên máy ảo Pixel 7" />
+            tools:text="Ra soat 15 Use Case va kiem thu Room DAO" />
 
         <LinearLayout
             android:id="@+id/layout_task_badges"
@@ -76,36 +74,32 @@ app:strokeWidth="1dp">
                 android:id="@+id/tv_badge_priority"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_badge_rounded"
-                android:paddingStart="8dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="2dp"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
                 android:textAppearance="@style/TextAppearance.TodoNotes.Badge"
+                app:drawableStartCompat="@drawable/bg_priority_dot"
                 tools:text="Cao" />
 
             <TextView
                 android:id="@+id/tv_badge_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/bg_badge_rounded"
-                android:paddingStart="8dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="2dp"
-                android:textAppearance="@style/TextAppearance.TodoNotes.Badge"
-                android:textColor="@color/color_on_primary_container"
-                tools:text="Học tập" />
+                android:paddingHorizontal="7dp"
+                android:paddingVertical="2dp"
+                android:textAppearance="@style/TextAppearance.TodoNotes.Caption"
+                android:textColor="@color/color_text_secondary"
+                tools:text="Hoc tap" />
 
             <TextView
                 android:id="@+id/tv_badge_subtasks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="10dp"
                 android:textAppearance="@style/TextAppearance.TodoNotes.Caption"
                 android:visibility="gone"
-                tools:text="1/3 mục con"
+                tools:text="1/3 muc con"
                 tools:visibility="visible" />
         </LinearLayout>
 
@@ -133,7 +127,7 @@ app:strokeWidth="1dp">
                 android:id="@+id/iv_task_reminder"
                 android:layout_width="14dp"
                 android:layout_height="14dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="6dp"
                 android:importantForAccessibility="no"
                 android:src="@drawable/ic_alarm"
                 android:visibility="gone"
@@ -141,11 +135,11 @@ app:strokeWidth="1dp">
                 tools:visibility="visible" />
         </LinearLayout>
 
-        <!-- Cột 3: Nút xóa nhanh công việc (Vùng chạm 48dp x 48dp) -->
         <ImageButton
             android:id="@+id/btn_delete_task"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:alpha="0.55"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/cd_delete_item"
             android:src="@drawable/ic_delete"

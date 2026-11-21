@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_root_add_edit_note"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/layout_root_add_edit_note"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/color_background"
+android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar_add_edit_note"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/color_surface"
-        android:elevation="2dp"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:title="@string/title_add_note"
+        app:titleTextAppearance="@style/TextAppearance.TodoNotes.ToolbarTitle"
         app:titleTextColor="@color/color_text_primary" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/stroke_hairline"
+        android:background="@color/color_divider" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,15 +33,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/screen_margin">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_note_color"
-                android:textColor="@color/color_text_secondary"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textAppearance="@style/TextAppearance.TodoNotes.Caption"
+                android:fontFamily="sans-serif-medium" />
 
             <LinearLayout
                 android:id="@+id/layout_color_palette"
@@ -48,54 +52,54 @@
 
                 <ImageButton
                     android:id="@+id/btn_color_0"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_badge_rounded"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_color_swatch"
                     android:contentDescription="@string/label_note_color"
                     app:tint="@color/note_color_0_stroke" />
 
                 <ImageButton
                     android:id="@+id/btn_color_1"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_badge_rounded"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_color_swatch"
                     android:contentDescription="@string/label_note_color"
                     app:tint="@color/note_color_1_stroke" />
 
                 <ImageButton
                     android:id="@+id/btn_color_2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_badge_rounded"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_color_swatch"
                     android:contentDescription="@string/label_note_color"
                     app:tint="@color/note_color_2_stroke" />
 
                 <ImageButton
                     android:id="@+id/btn_color_3"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_badge_rounded"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_color_swatch"
                     android:contentDescription="@string/label_note_color"
                     app:tint="@color/note_color_3_stroke" />
 
                 <ImageButton
                     android:id="@+id/btn_color_4"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_badge_rounded"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_color_swatch"
                     android:contentDescription="@string/label_note_color"
                     app:tint="@color/note_color_4_stroke" />
 
                 <ImageButton
                     android:id="@+id/btn_color_5"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_badge_rounded"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/bg_color_swatch"
                     android:contentDescription="@string/label_note_color"
                     app:tint="@color/note_color_5_stroke" />
             </LinearLayout>
@@ -106,7 +110,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="@string/hint_note_title">
+                android:hint="@string/hint_note_title"
+                app:boxBackgroundColor="@color/color_surface"
+                app:boxCornerRadiusBottomEnd="@dimen/radius_control"
+                app:boxCornerRadiusBottomStart="@dimen/radius_control"
+                app:boxCornerRadiusTopEnd="@dimen/radius_control"
+                app:boxCornerRadiusTopStart="@dimen/radius_control">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_note_title"
@@ -114,7 +123,8 @@
                     android:layout_height="wrap_content"
                     android:inputType="textCapSentences"
                     android:maxLength="200"
-                    android:maxLines="2" />
+                    android:maxLines="2"
+                    android:textAppearance="@style/TextAppearance.TodoNotes.EditorTitle" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -124,7 +134,12 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="12dp"
                 android:layout_weight="1"
-                android:hint="@string/hint_note_content">
+                android:hint="@string/hint_note_content"
+                app:boxBackgroundColor="@color/color_surface"
+                app:boxCornerRadiusBottomEnd="@dimen/radius_control"
+                app:boxCornerRadiusBottomStart="@dimen/radius_control"
+                app:boxCornerRadiusTopEnd="@dimen/radius_control"
+                app:boxCornerRadiusTopStart="@dimen/radius_control">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_note_content"
@@ -132,8 +147,11 @@
                     android:layout_height="match_parent"
                     android:gravity="top|start"
                     android:inputType="textMultiLine|textCapSentences"
+                    android:lineSpacingExtra="4dp"
                     android:maxLength="20000"
-                    android:minLines="8" />
+                    android:minLines="9"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -141,9 +159,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:textAppearance="@style/TextAppearance.TodoNotes.Caption"
                 android:textColor="@color/color_text_disabled"
-                android:textSize="12sp"
-                tools:text="Cập nhật: 15/11 14:30" />
+                tools:text="Cap nhat: 15/11 14:30" />
 
         </LinearLayout>
     </ScrollView>

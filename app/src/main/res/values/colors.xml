@@ -3,51 +3,51 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Bảng màu chủ đạo Indigo Slate + Soft Glass (Light Mode - docs/DESIGN.md) -->
-    <color name="color_primary">#4F46E5</color>
+    <!-- Bang mau trung tinh + xanh Cobalt tram (Light Mode) -->
+    <color name="color_primary">#2563EB</color>
     <color name="color_on_primary">#FFFFFF</color>
-    <color name="color_primary_container">#E0E7FF</color>
-    <color name="color_on_primary_container">#1E1B4B</color>
-    <color name="color_secondary">#0EA5E9</color>
+    <color name="color_primary_container">#EAF1FF</color>
+    <color name="color_on_primary_container">#1D4ED8</color>
+    <color name="color_secondary">#475569</color>
     <color name="color_on_secondary">#FFFFFF</color>
 
-    <!-- Nền màn hình, bề mặt Soft Glass và viền 1dp -->
-    <color name="color_background">#F4F6FB</color>
+    <!-- Nen man hinh, be mat phang va vien manh 1dp -->
+    <color name="color_background">#F6F7F9</color>
     <color name="color_surface">#FFFFFF</color>
-    <color name="color_surface_glass">#EBF8FAFC</color>
-    <color name="color_surface_elevated">#FFFFFF</color>
-    <color name="color_glass_stroke">#CBD5E1</color>
-    <color name="color_divider">#E2E8F0</color>
+    <color name="color_surface_glass">#FFFFFF</color>
+    <color name="color_surface_elevated">#EEF0F4</color>
+    <color name="color_glass_stroke">#E5E7EB</color>
+    <color name="color_divider">#E5E7EB</color>
 
-    <!-- Văn bản (Độ tương phản >= 4.5:1) -->
-    <color name="color_text_primary">#0F172A</color>
-    <color name="color_text_secondary">#475569</color>
-    <color name="color_text_disabled">#64748B</color>
+    <!-- Van ban dat chuan tuong phan WCAG AA -->
+    <color name="color_text_primary">#111827</color>
+    <color name="color_text_secondary">#525866</color>
+    <color name="color_text_disabled">#8B92A2</color>
 
-    <!-- Màu Mức độ ưu tiên & Trạng thái (Light Mode) -->
-    <color name="priority_low_text">#0369A1</color>
-    <color name="priority_low_bg">#E0F2FE</color>
+    <!-- Muc do uu tien va trang thai (Light Mode) -->
+    <color name="priority_low_text">#4B5563</color>
+    <color name="priority_low_bg">#F3F4F6</color>
     <color name="priority_medium_text">#B45309</color>
-    <color name="priority_medium_bg">#FEF3C7</color>
-    <color name="priority_high_text">#BE123C</color>
-    <color name="priority_high_bg">#FFE4E6</color>
+    <color name="priority_medium_bg">#FEF9EC</color>
+    <color name="priority_high_text">#DC2626</color>
+    <color name="priority_high_bg">#FEF2F2</color>
 
-    <color name="status_overdue_text">#B91C1C</color>
-    <color name="status_overdue_bg">#FEE2E2</color>
+    <color name="status_overdue_text">#DC2626</color>
+    <color name="status_overdue_bg">#FEF2F2</color>
     <color name="status_completed_text">#15803D</color>
-    <color name="status_completed_bg">#DCFCE7</color>
+    <color name="status_completed_bg">#ECFDF5</color>
 
-    <!-- 6 Màu thẻ Ghi chú nhanh (Light Mode) -->
+    <!-- 6 mau the ghi chu tong giay diu mat (Light Mode) -->
     <color name="note_color_0_bg">#FFFFFF</color>
-    <color name="note_color_0_stroke">#CBD5E1</color>
-    <color name="note_color_1_bg">#FFFBEB</color>
-    <color name="note_color_1_stroke">#FDE68A</color>
-    <color name="note_color_2_bg">#ECFDF5</color>
-    <color name="note_color_2_stroke">#A7F3D0</color>
-    <color name="note_color_3_bg">#F0F9FF</color>
-    <color name="note_color_3_stroke">#BAE6FD</color>
-    <color name="note_color_4_bg">#FFF1F2</color>
-    <color name="note_color_4_stroke">#FECDD3</color>
-    <color name="note_color_5_bg">#F5F3FF</color>
-    <color name="note_color_5_stroke">#DDD6FE</color>
+    <color name="note_color_0_stroke">#E5E7EB</color>
+    <color name="note_color_1_bg">#FDF8E8</color>
+    <color name="note_color_1_stroke">#EDE2BF</color>
+    <color name="note_color_2_bg">#EEF6F0</color>
+    <color name="note_color_2_stroke">#CFE3D4</color>
+    <color name="note_color_3_bg">#EEF4FB</color>
+    <color name="note_color_3_stroke">#CEDDF0</color>
+    <color name="note_color_4_bg">#FCF0F2</color>
+    <color name="note_color_4_stroke">#EED3D8</color>
+    <color name="note_color_5_bg">#F3F0FA</color>
+    <color name="note_color_5_stroke">#DDD5EE</color>
 </resources>
