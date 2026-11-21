@@ -27,16 +27,17 @@
 
     <style name="TextAppearance.TodoNotes.ToolbarTitle" parent="TextAppearance.Material3.TitleLarge">
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">21sp</item>
         <item name="android:letterSpacing">-0.015</item>
         <item name="android:textColor">@color/color_text_primary</item>
     </style>
 
-    <style name="TextAppearance.TodoNotes.HeadlineMetric" parent="TextAppearance.Material3.TitleMedium">
+    <style name="TextAppearance.TodoNotes.HeadlineMetric" parent="TextAppearance.Material3.HeadlineSmall">
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:fontFeatureSettings">tnum</item>
-        <item name="android:textColor">@color/color_primary</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="TextAppearance.TodoNotes.ItemTitle" parent="TextAppearance.Material3.TitleMedium">
@@ -73,9 +74,11 @@
     </style>
 
     <style name="Widget.TodoNotes.FilterChip" parent="Widget.Material3.Chip.Filter">
-        <item name="chipCornerRadius">10dp</item>
+        <item name="chipCornerRadius">12dp</item>
         <item name="chipMinHeight">34dp</item>
         <item name="chipMinTouchTargetSize">40dp</item>
+        <item name="chipBackgroundColor">@color/chip_bg_selector</item>
+        <item name="android:textColor">@color/chip_text_selector</item>
         <item name="chipStrokeWidth">1dp</item>
         <item name="chipStrokeColor">@color/color_divider</item>
         <item name="checkedIconVisible">false</item>

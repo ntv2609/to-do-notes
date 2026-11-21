@@ -9,9 +9,9 @@ android:layout_margin="6dp"
 android:clickable="true"
 android:focusable="true"
 android:foreground="?attr/selectableItemBackground"
-app:cardCornerRadius="@dimen/radius_card"
-app:cardElevation="0dp"
-app:strokeWidth="@dimen/stroke_hairline">
+app:cardCornerRadius="16dp"
+app:cardElevation="3dp"
+app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,7 +69,7 @@ app:strokeWidth="@dimen/stroke_hairline">
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAppearance="@style/TextAppearance.TodoNotes.Caption"
-                android:textColor="@color/color_text_disabled"
+                android:textColor="@color/color_text_secondary"
                 tools:text="Cap nhat: 15/11 14:30" />
 
             <ImageButton

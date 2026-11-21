@@ -11,8 +11,8 @@ tools:context=".ui.tasks.AddEditTaskActivity">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_surface"
-        app:elevation="0dp"
-        app:liftOnScroll="false">
+        app:elevation="2dp"
+        app:liftOnScroll="true">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_add_edit_task"
@@ -61,8 +61,8 @@ tools:context=".ui.tasks.AddEditTaskActivity">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/color_surface"
-                app:cardCornerRadius="@dimen/radius_card"
-                app:cardElevation="0dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
                 app:strokeColor="@color/color_divider"
                 app:strokeWidth="@dimen/stroke_hairline">
 
@@ -124,8 +124,8 @@ tools:context=".ui.tasks.AddEditTaskActivity">
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_3"
                 app:cardBackgroundColor="@color/color_surface"
-                app:cardCornerRadius="@dimen/radius_card"
-                app:cardElevation="0dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
                 app:strokeColor="@color/color_divider"
                 app:strokeWidth="@dimen/stroke_hairline">
 
@@ -234,8 +234,8 @@ tools:context=".ui.tasks.AddEditTaskActivity">
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_3"
                 app:cardBackgroundColor="@color/color_surface"
-                app:cardCornerRadius="@dimen/radius_card"
-                app:cardElevation="0dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
                 app:strokeColor="@color/color_divider"
                 app:strokeWidth="@dimen/stroke_hairline">
 
@@ -336,8 +336,8 @@ tools:context=".ui.tasks.AddEditTaskActivity">
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_3"
                 app:cardBackgroundColor="@color/color_surface"
-                app:cardCornerRadius="@dimen/radius_card"
-                app:cardElevation="0dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
                 app:strokeColor="@color/color_divider"
                 app:strokeWidth="@dimen/stroke_hairline">
 

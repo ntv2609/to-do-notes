@@ -27,7 +27,7 @@ import com.vinhnt.todonotes.util.SubtaskJsonHelper;
 import java.util.List;
 
 /**
-* Adapter hien thi danh sach cong viec voi ListAdapter + DiffUtil.
+* Adapter hien thi danh sach cong viec voi chieu sau vat ly va phan hoi cham nhe.
   */
   public class TaskAdapter extends ListAdapter<TaskEntity, TaskAdapter.TaskViewHolder> {
 
@@ -87,6 +87,11 @@ import java.util.List;
        void bind(@NonNull TaskEntity task, @NonNull OnTaskInteractionListener listener) {
            Context context = binding.getRoot().getContext();
 
+           // Dat lai scale tranh lech khi tai su dung ViewHolder
+           binding.cardTaskItem.animate().cancel();
+           binding.cardTaskItem.setScaleX(1.0f);
+           binding.cardTaskItem.setScaleY(1.0f);
+
            // 1. Tieu de va trang thai hoan thanh
            binding.tvTaskTitle.setText(task.getTitle());
            if (task.isCompleted()) {
@@ -112,20 +117,30 @@ import java.util.List;
                binding.tvTaskDescription.setText(desc);
            }
 
-           // 3. Checkbox kem phan hoi rung nhe khi nguoi dung cham
+           // 3. Checkbox kem rung nhe va hieu ung nhun the khi nguoi dung cham
            binding.cbTaskCompleted.setOnCheckedChangeListener(null);
            binding.cbTaskCompleted.setChecked(task.isCompleted());
            binding.cbTaskCompleted.setOnCheckedChangeListener((buttonView, isChecked) -> {
                if (buttonView.isPressed()) {
                    buttonView.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK);
+                   binding.cardTaskItem.animate()
+                           .scaleX(0.985f)
+                           .scaleY(0.985f)
+                           .setDuration(75L)
+                           .withEndAction(() -> binding.cardTaskItem.animate()
+                                   .scaleX(1.0f)
+                                   .scaleY(1.0f)
+                                   .setDuration(110L)
+                                   .start())
+                           .start();
                    listener.onTaskCheckChanged(task, isChecked);
                }
            });
 
-           // 4. Do uu tien dang cham tron nho + chu
-           bindPriorityIndicator(context, Priority.fromValue(task.getPriority()));
+           // 4. Thanh mau uu tien mep trai + cham tron + chu
+           bindPriorityIndicator(context, Priority.fromValue(task.getPriority()), task.isCompleted());
 
-           // 5. Nhan phan loai trung tinh
+           // 5. Nhan phan loai co mau sac rieng
            bindCategoryTag(context, TaskCategory.fromValue(task.getCategory()));
 
            // 6. Tien do cong viec con
@@ -187,7 +202,11 @@ import java.util.List;
            binding.btnDeleteTask.setOnClickListener(v -> listener.onTaskDeleteClicked(task));
        }
 
-       private void bindPriorityIndicator(@NonNull Context context, @NonNull Priority priority) {
+       private void bindPriorityIndicator(
+               @NonNull Context context,
+               @NonNull Priority priority,
+               boolean isCompleted
+       ) {
            int textRes;
            int colorRes;
            switch (priority) {
@@ -205,7 +224,11 @@ import java.util.List;
                    colorRes = R.color.priority_medium_text;
                    break;
            }
-           int resolvedColor = ContextCompat.getColor(context, colorRes);
+           int resolvedColor = ContextCompat.getColor(
+                   context,
+                   isCompleted ? R.color.color_text_disabled : colorRes
+           );
+           binding.viewPriorityStrip.setBackgroundColor(resolvedColor);
            binding.tvBadgePriority.setText(textRes);
            binding.tvBadgePriority.setTextColor(resolvedColor);
            TextViewCompat.setCompoundDrawableTintList(
@@ -216,27 +239,40 @@ import java.util.List;
 
        private void bindCategoryTag(@NonNull Context context, @NonNull TaskCategory category) {
            int labelRes;
+           int bgRes;
+           int textRes;
            switch (category) {
                case STUDY:
                    labelRes = R.string.category_study;
+                   bgRes = R.color.cat_study_bg;
+                   textRes = R.color.cat_study_text;
                    break;
                case WORK:
                    labelRes = R.string.category_work;
+                   bgRes = R.color.cat_work_bg;
+                   textRes = R.color.cat_work_text;
                    break;
                case SHOPPING:
                    labelRes = R.string.category_shopping;
+                   bgRes = R.color.cat_shopping_bg;
+                   textRes = R.color.cat_shopping_text;
                    break;
                case OTHER:
                    labelRes = R.string.category_other;
+                   bgRes = R.color.cat_other_bg;
+                   textRes = R.color.cat_other_text;
                    break;
                case PERSONAL:
                default:
                    labelRes = R.string.category_personal;
+                   bgRes = R.color.cat_personal_bg;
+                   textRes = R.color.cat_personal_text;
                    break;
            }
            binding.tvBadgeCategory.setText(labelRes);
+           binding.tvBadgeCategory.setTextColor(ContextCompat.getColor(context, textRes));
            binding.tvBadgeCategory.setBackgroundTintList(
-                   ColorStateList.valueOf(ContextCompat.getColor(context, R.color.color_surface_elevated))
+                   ColorStateList.valueOf(ContextCompat.getColor(context, bgRes))
            );
        }
   }
